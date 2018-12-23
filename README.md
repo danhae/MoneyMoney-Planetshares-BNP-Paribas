@@ -1,2 +1,2 @@
 # MoneyMoney-Planetshares-BNP-Paribas
-MoneyMoney extension for Planetshares BNP Paribas
+MoneyMoney Extension for Planetshares BNP Paribas
