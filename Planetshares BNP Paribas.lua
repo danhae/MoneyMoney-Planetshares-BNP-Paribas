@@ -40,7 +40,7 @@ function InitializeSession (protocol, bankCode, username, username2, password)
   json = JSON(string.sub(content,7)):dictionary()
   if json["authenticated"] ~= true then
     return {LoginFailed}
-  end  
+  end
 end
 
 function ListAccounts (knownAccounts)
@@ -60,10 +60,10 @@ function ListAccounts (knownAccounts)
 end
 
 function RefreshAccount (account, since)
-  local s = {}  
+  local s = {}
   content, charset, mimeType = connection:request("POST",url,'{"controllerName":"avoir","action":"getAll","language":"de","parameters":{},"trads":[]}',"application/json")
   json = JSON(string.sub(content,7)):dictionary()
-  
+
   for key, entry in pairs(json["parameters"]["shares"]["pes"]) do
     s[key] = {
       name = entry["columns"][2]["text"] .. " - " .. string.sub(entry["columns"][6]["text"],7),
@@ -81,6 +81,8 @@ function RefreshAccount (account, since)
   return {securities = s}
 end
 
-function EndSession () 
+function EndSession ()
   content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"quit","language":"de","parameters":{},"trads":[]}',"application/json")
 end
+
+-- SIGNATURE: MCwCFB9yUKwhxQ+Q6fEAt6kSNZcriJZaAhRpt7CaY+/Brbpx0JJMtv5Edf+fug==
