@@ -23,7 +23,7 @@
 -- SOFTWARE.
 
 
-WebBanking{version = 0.01,
+WebBanking{version = 0.02,
   url = "https://planetshares.bnpparibas.com/ws/root",
   services = {"Planetshares BNP Paribas"}
 }
@@ -36,7 +36,7 @@ end
 
 function InitializeSession (protocol, bankCode, username, username2, password)
   connection = Connection()
-  content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"authenticate","language":"de","parameters":{"loginEmet":"'..username..'","loginActi":"'..username2..'","pwd":"'..password..'"},"trads":[]}',"application/json")
+  content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"authenticate","language":"de","parameters":{"loginEmet":"'..username..'","loginActi":"'..username2..'","pwd":"'..password..'"},"useragent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Mobile Safari/537.36"},"trads":[]}',"application/json")
   json = JSON(string.sub(content,7)):dictionary()
   if json["authenticated"] ~= true then
     return {LoginFailed}
