@@ -85,4 +85,3 @@ function EndSession ()
   content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"quit","language":"de","parameters":{},"trads":[]}',"application/json")
 end
 
--- SIGNATURE: MCwCFB9yUKwhxQ+Q6fEAt6kSNZcriJZaAhRpt7CaY+/Brbpx0JJMtv5Edf+fug==
