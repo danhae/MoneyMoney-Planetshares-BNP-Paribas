@@ -1,8 +1,8 @@
--- Inofficial Planetshares BNP Paribas Extension (https://planetshares.bnpparibas.com/) for MoneyMoney (https://moneymoney-app.com)
+-- Inofficial Planetshares BNP Paribas Extension (https://planetshares.uptevia.pro.fr) for MoneyMoney (https://moneymoney-app.com)
 --
 -- MIT License
 --
--- Copyright (c) 2018 Daniel Hähnel
+-- Copyright (c) 2024 Daniel Hähnel MoneyMoneyExtension@danielhaehnel.de
 --
 -- Permission is hereby granted, free of charge, to any person obtaining a copy
 -- of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 -- SOFTWARE.
 
 
-WebBanking{version = 0.04,
+WebBanking{version = 0.10,
   url = "https://planetshares.uptevia.pro.fr/ws/root",
   services = {"Planetshares BNP Paribas"}
 }
@@ -36,7 +36,11 @@ end
 
 function InitializeSession (protocol, bankCode, username, username2, password)
   connection = Connection()
-  content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"authenticate","language":"de","parameters":{"loginEmet":"'..username..'","loginActi":"'..username2..'","pwd":"'..password..'","useragent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"},"trads":[]}',"application/json")  json = JSON(string.sub(content,7)):dictionary()
+  content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"authenticate","language":"de","parameters":{"loginEmet":"'..username..'","loginActi":"'..username2..'","pwd":"'..password..'","useragent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"},"trads":[]}',"application/json")
+  
+
+  
+  json = JSON(string.sub(content,7)):dictionary()
   if json["authenticated"] ~= true then
     return {LoginFailed}
   end
@@ -84,4 +88,3 @@ function EndSession ()
   content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"quit","language":"de","parameters":{},"trads":[]}',"application/json")
 end
 
--- SIGNATURE: MCwCFA8uMXbacQ0AOL3LFYyxj5j37AmwAhRd9drJF5UoKi6cQTgmnwTVZMBIvA==
