@@ -37,9 +37,9 @@ end
 function InitializeSession (protocol, bankCode, username, username2, password)
   connection = Connection()
   content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"authenticate","language":"de","parameters":{"loginEmet":"'..username..'","loginActi":"'..username2..'","pwd":"'..password..'","useragent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"},"trads":[]}',"application/json")
-  
 
-  
+
+
   json = JSON(string.sub(content,7)):dictionary()
   if json["authenticated"] ~= true then
     return {LoginFailed}
@@ -88,3 +88,4 @@ function EndSession ()
   content, charset, mimeType = connection:request("POST",url,'{"controllerName":"login","action":"quit","language":"de","parameters":{},"trads":[]}',"application/json")
 end
 
+-- SIGNATURE: MCwCFGvnsP9muFSWxOWp8bL+HzgNWc2HAhQk17+qrNgO1WR2hrX3ekltPBhUOg==
